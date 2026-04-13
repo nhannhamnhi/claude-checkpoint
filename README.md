@@ -1,548 +1,445 @@
-# CHECKPOINT - MỨC 1 (File Nhỏ < 100KB)
+# Claude Checkpoints - Template Library 📚
 
-**Dùng cho:** Code nhỏ, snippet, bài viết ngắn, file dữ liệu nhỏ
+Một bộ templates giúp bạn quản lý checkpoint khi chuyển đổi giữa các tài khoản Claude mà không mất context và token.
 
----
-
-## 1. TÓM TẮT (2-3 câu)
-[Mô tả ngắn gọn công việc bạn đang làm]
-
-Ví dụ:
-- "Đang viết API endpoint GET /users bằng Python Flask"
-- "Đang viết bài blog về Machine Learning cho người mới"
-- "Đang tối ưu hóa SQL query cho hiệu năng tốt hơn"
+> **Tại sao dùng?** Thay vì nhập lại toàn bộ context từ đầu (tốn token), bạn chỉ cần copy-paste 1 checkpoint ngắn gọn → Claude hiểu ngay!
 
 ---
 
-## 2. NỘI DUNG FILE (Copy toàn bộ nội dung)
+## 📋 Vấn Đề & Giải Pháp
 
-```[ngôn ngữ]
-[Nội dung file ở đây]
-```
+### **Vấn Đề:**
+- ❌ Tài khoản A hết token, phải chuyển sang tài khoản B
+- ❌ Trên B, Claude không biết bạn đang làm gì
+- ❌ Bạn phải nhập lại toàn bộ context từ đầu
+- ❌ **Tốn rất nhiều token!**
 
-Ví dụ với Python:
-```python
-def get_users(db):
-    users = db.query(User).all()
-    return [{'id': u.id, 'name': u.name} for u in users]
-```
-
----
-
-## 3. KEY CONTEXT (3-5 thông tin quan trọng)
-
-- [Công nghệ/Framework dùng]
-- [Yêu cầu chính của project]
-- [Constraint/Giới hạn]
-- [Chuẩn/Best practice cần tuân theo]
-- [Thông tin khác quan trọng]
-
-Ví dụ:
-- Tech: Python 3.11, Flask 2.3, SQLAlchemy ORM
-- Database: PostgreSQL
-- Mục tiêu: Response time < 100ms
-- Error handling: Custom exceptions
-- Code style: PEP 8
+### **Giải Pháp:**
+- ✅ Trước khi hết token, tạo **checkpoint** (tóm tắt ngắn gọn)
+- ✅ Copy checkpoint sang tài khoản B
+- ✅ Claude đọc checkpoint → hiểu context ngay lập tức
+- ✅ **Tiết kiệm token đáng kể!**
 
 ---
 
-## 4. TRẠNG THÁI HIỆN TẠI
-
-- ✅ Đã xong: [Liệt kê những gì hoàn thành]
-- → Đang làm: [Công việc hiện tại]
-- ○ Cần làm: [Những gì còn lại]
-
-Ví dụ:
-- ✅ Database schema
-- ✅ User authentication
-- → Đang: Product API endpoints
-- ○ Order API endpoints
-- ○ Testing & debugging
-
----
-
-## 5. NEXT STEP (Bước tiếp theo cụ thể)
-
-[Mô tả rõ ràng bước tiếp theo]
-
-Ví dụ:
-- "Viết GET /products endpoint với pagination"
-- "Thêm error handling cho invalid input"
-- "Viết section 'Functions' cho bài blog"
-
----
-
-## CÁCH SỬ DỤNG TEMPLATE NÀY
-
-### Trên Tài khoản A (Khi sắp hết token):
-1. Điền đầy đủ các section từ 1-5
-2. Copy toàn bộ checkpoint này
-
-### Trên Tài khoản B (Tiếp tục):
-1. Dán toàn bộ checkpoint
-2. Viết: "Tiếp tục từ bước 'NEXT STEP' nhé"
-3. Claude sẽ có toàn bộ ngữ cảnh ngay lập tức
-
----
-
-**Lưu ý:** Template này phù hợp khi file < 100KB. Nếu file lớn hơn, dùng Template Mức 2.
-# CHECKPOINT - MỨC 2 (File Trung Bình 100KB-5MB + Link)
-
-**Dùng cho:** Code project vừa, dataset vừa, nhiều link, tài nguyên ngoài
-
----
-
-## 1. TÓM TẮT (2-3 câu)
-[Mô tả ngắn gọn công việc bạn đang làm]
-
-Ví dụ:
-- "Refactor backend API và tối ưu database queries"
-- "Phân tích data ecommerce để tìm pattern bán hàng"
-- "Xây dựng mobile app dashboard với React Native"
-
----
-
-## 2. FILES LIÊN QUAN
-
-Liệt kê các file bạn sẽ upload lại:
+## 📁 Cấu Trúc Repo
 
 ```
-📁 File 1: [Tên file]
-   - Kích thước: [KB/MB]
-   - Loại: [code/data/document]
-   - Chứa: [Mô tả nội dung]
-   - Vấn đề cần giải quyết: [Mô tả vấn đề]
-
-📁 File 2: [Tên file]
-   - Kích thước: [KB/MB]
-   - Loại: [code/data/document]
-   - Chứa: [Mô tả nội dung]
-   - Vấn đề cần giải quyết: [Mô tả vấn đề]
-```
-
-Ví dụ:
-```
-📁 File 1: app.py
-   - Kích thước: 250 KB
-   - Loại: Python code
-   - Chứa: Flask app chính, 5 route endpoints
-   - Vấn đề: N+1 query problem, timeout 5 giây
-
-📁 File 2: database.csv
-   - Kích thước: 1.5 MB
-   - Loại: Data
-   - Chứa: 50,000 users, products, orders
-   - Vấn đề: Data inconsistency ở 200 rows
+claude-checkpoints/
+│
+├── 📄 README.md                    ← File này (hướng dẫn chính)
+├── 📄 .gitignore                   (GitHub tự động tạo)
+│
+├── 📁 templates/                   ← 3 templates chính
+│   ├── level1_small_files.md       ✓ File nhỏ (<100KB)
+│   ├── level2_medium_files.md      ✓ File trung (100KB-5MB)
+│   └── level3_manifest.md          ✓ Project phức tạp (5MB+)
+│
+├── 📁 examples/                    ← Ví dụ thực tế
+│   ├── checkpoint_flask_api.md     (Ví dụ: Tối ưu Flask API)
+│   ├── checkpoint_data_analysis.md (Ví dụ: Phân tích dữ liệu)
+│   └── checkpoint_blog_writing.md  (Ví dụ: Viết bài blog)
+│
+└── 📁 guides/                      ← Hướng dẫn chi tiết
+    ├── token_checker.md            (Cảnh báo token tự động)
+    ├── best_practices.md           (Những điều nên & không nên)
+    └── troubleshooting.md          (Giải quyết vấn đề)
 ```
 
 ---
 
-## 3. LINKS & TÀI NGUYÊN NGOÀI
+## 🚀 Bắt Đầu Nhanh - 3 Bước
 
+### **Bước 1: Chọn Template Phù Hợp**
+
+| Kích Thước File | Template | Ví Dụ |
+|---|---|---|
+| **< 100KB** | `level1_small_files.md` | Script Python, bài viết ngắn, file CSV nhỏ |
+| **100KB - 5MB** | `level2_medium_files.md` | Code project vừa, dataset, nhiều files |
+| **> 5MB (phức tạp)** | `level3_manifest.md` | Full-stack app, data pipeline, nhiều dependencies |
+
+### **Bước 2: Điền Thông Tin**
+
+Mở template phù hợp, điền:
+- ✅ Tóm tắt công việc
+- ✅ Nội dung file hoặc liệt kê files
+- ✅ Context quan trọng (tech stack, mục tiêu, etc.)
+- ✅ Trạng thái hiện tại
+- ✅ Bước tiếp theo
+
+### **Bước 3: Copy & Dùng**
+
+**Trên tài khoản A (sắp hết token):**
 ```
-🔗 Link 1: [URL]
-   - Loại: [Documentation/Tutorial/GitHub/Dataset]
-   - Nội dung liên quan: [Mô tả]
-
-🔗 Link 2: [URL]
-   - Loại: [Documentation/Tutorial/GitHub/Dataset]
-   - Nội dung liên quan: [Mô tả]
+Copy checkpoint vừa tạo
 ```
 
-Ví dụ:
+**Trên tài khoản B (tiếp tục):**
 ```
-🔗 Link 1: https://docs.sqlalchemy.org/orm/loading_strategies.html
-   - Loại: Documentation
-   - Nội dung: Eager loading để tránh N+1 queries
+Dán checkpoint → Viết: "Tiếp tục từ 'NEXT STEP'"
+Claude: "Tôi hiểu! Chúng ta tiếp tục..."
+```
 
-🔗 Link 2: https://youtube.com/watch?v=xyz (Database Optimization Tips)
-   - Loại: Tutorial
-   - Nội dung: Cách optimize SQL queries
+✅ **Xong! Không phải nhập lại từ đầu!**
+
+---
+
+## 📖 Hướng Dẫn Chi Tiết
+
+### **📚 Dành Cho Người Mới**
+
+1. Đọc file này (README.md) - hiểu tổng quát
+2. Xem **examples/** - thấy cách dùng thực tế
+3. Copy template → điền thông tin → sử dụng
+
+### **📚 Dành Cho Người Nâng Cao**
+
+1. Chọn template trong **templates/**
+2. Xem **guides/** - best practices & tips
+3. Tùy chỉnh template cho project riêng
+
+---
+
+## 📊 Chọn Template Nào?
+
+### **Level 1: File Nhỏ** 
+```
+Dùng khi: File < 100KB
+Cách: Copy nội dung file vào checkpoint
+Ưu điểm: Đơn giản, nhanh
+Nhược điểm: Chỉ tốt khi file nhỏ
+```
+
+**Ví dụ:**
+- Script Python 50KB
+- Bài blog 100 dòng
+- File CSV 1000 rows
+- Code snippet
+
+---
+
+### **Level 2: File Trung**
+```
+Dùng khi: File 100KB - 5MB
+Cách: Liệt kê files → Upload lại trên B
+Ưu điểm: Cân bằng giữa chi tiết & dễ dùng
+Nhược điểm: Phải upload lại file
+```
+
+**Ví dụ:**
+- Code project vừa + CSV
+- Nhiều file liên quan
+- Dataset 1-2MB
+- Code + documentation
+
+---
+
+### **Level 3: Project Phức Tạp**
+```
+Dùng khi: File > 5MB hoặc project rất phức tạp
+Cách: Manifest file (liệt kê tất cả)
+Ưu điểm: Quản lý toàn bộ project
+Nhược điểm: Cần setup chi tiết
+```
+
+**Ví dụ:**
+- Full-stack application
+- Data pipeline với nhiều tables
+- Project 10+ files
+- Dependencies phức tạp
+
+---
+
+## 💡 Tips & Tricks
+
+### **Tip 1: Kiểm Tra Token Sắp Hết**
+
+Biết dấu hiệu khi nào cần tạo checkpoint:
+- ✅ Cuộc trò chuyện > 20-30 tin nhắn
+- ✅ Response của Claude bắt đầu bị cắt ngắn
+- ✅ Claude cảnh báo: "Token sắp hết"
+- ✅ Xem **guides/token_checker.md** để đếm chính xác
+
+### **Tip 2: Cấu Trúc Checkpoint Tốt**
+
+Checkpoint tốt bao gồm:
+```
+1. TÓM TẮT (2-3 câu) ← Dễ nhìn
+2. NỘI DUNG (Code/Files)
+3. KEY CONTEXT (3-5 thông tin quan trọng)
+4. TRẠNG THÁI (Đã xong, đang làm, cần làm)
+5. NEXT STEP (Bước tiếp theo)
+```
+
+### **Tip 3: Lưu Checkpoint Nhiều Nơi**
+
+Không chỉ lưu trên GitHub:
+- 📌 GitHub (version control)
+- 📌 Google Drive (backup)
+- 📌 Notion (dễ tìm)
+- 📌 Local file (quick access)
+
+### **Tip 4: Update Checkpoint Thường Xuyên**
+
+Khi status thay đổi:
+```bash
+# Update TRẠNG THÁI & NEXT STEP
+git add .
+git commit -m "Update checkpoint for project X"
+git push origin main
 ```
 
 ---
 
-## 4. KEY CONTEXT (3-5 thông tin quan trọng)
+## 🔄 Workflow Điển Hình
 
-- [Tech stack dùng]
-- [Mục tiêu chính]
-- [Constraint/Giới hạn]
-- [Best practice/Convention]
-- [Thông tin khác]
+### **Scenario: Refactor Code Python**
 
-Ví dụ:
-- Tech: Python 3.11, Flask 2.3, SQLAlchemy, PostgreSQL
-- Database: 3 tables (users, products, orders) với 50K rows
-- Mục tiêu: Giảm response time từ 5s xuống 1s
-- Constraint: Không được change database schema
-- Best practice: Follow PEP 8, sử dụng eager loading
-
----
-
-## 5. TRẠNG THÁI HIỆN TẠI
-
-- ✅ Đã xong: [Liệt kê những gì hoàn thành]
-- → Đang làm: [Công việc hiện tại]
-- ○ Cần làm: [Những gì còn lại]
-
-Ví dụ:
-- ✅ Database analysis
-- ✅ Identify N+1 queries
-- → Đang: Implement eager loading
-- ○ Optimize SELECT queries
-- ○ Benchmark & testing
-- ○ Deploy changes
-
----
-
-## 6. NEXT STEP (Bước tiếp theo cụ thể)
-
-[Mô tả rõ ràng bước tiếp theo]
-
-Ví dụ:
-- "Analyze app.py để tìm tất cả N+1 queries"
-- "Implement eager loading cho User.products relationship"
-- "Run benchmark trước/sau optimization"
-
----
-
-## CÁCH SỬ DỤNG TEMPLATE NÀY
-
-### Trên Tài khoản A (Khi sắp hết token):
-1. Điền đầy đủ các section từ 1-6
-2. Copy toàn bộ checkpoint này
-
-### Trên Tài khoản B (Tiếp tục):
-1. **Upload lại tất cả files** ở section "2. FILES LIÊN QUAN"
-2. **Dán toàn bộ checkpoint**
-3. Viết: "Đây là files và checkpoint của project. Tiếp tục từ bước 'NEXT STEP'"
-4. Claude sẽ xem files + checkpoint và tiếp tục ngay
-
----
-
-**Lưu ý:** 
-- Nếu file > 5MB, nên dùng Template Mức 3
-- Việc upload lại file chỉ mất vài giây
-- Checkpoint giúp Claude không quên context
-# CHECKPOINT - MỨC 3 (Manifest File - Project Phức Tạp)
-
-**Dùng cho:** Project lớn, nhiều files (5+), nhiều links, dữ liệu khổng lồ, phụ thuộc phức tạp
-
----
-
-## 1. THÔNG TIN PROJECT
-
-**Project:** [Tên project]  
-**Ngôn ngữ/Framework:** [Tech stack]  
-**Mục tiêu chính:** [Mục tiêu]  
-**Thời gian ước tính:** [Thời gian còn lại]  
-
-Ví dụ:
-```
-Project: E-commerce Backend Optimization
-Framework: Python 3.11 + Flask 2.3 + PostgreSQL
-Mục tiêu: Giảm API response time từ 5s → 1s
-Thời gian: 2 tuần
-```
-
----
-
-## 2. DANH SÁCH FILES CẦN DÙNG
+#### **Tài khoản A (Ngày 1 - Sắp hết token):**
 
 ```
-📁 [Tên folder 1]/
-├── 📄 [File 1] - [Kích thước]
-│   └─ Mô tả: [Nội dung & vấn đề]
-├── 📄 [File 2] - [Kích thước]
-│   └─ Mô tả: [Nội dung & vấn đề]
+Bước 1: Chọn template
+→ File là 250KB → Level 2 (File Trung)
 
-📁 [Tên folder 2]/
-├── 📄 [File 3] - [Kích thước]
-│   └─ Mô tả: [Nội dung & vấn đề]
+Bước 2: Tạo checkpoint
+CHECKPOINT - Python Code Refactor
+1. TÓM TẮT: Refactor app.py để tối ưu performance
+2. FILES: app.py (250KB), database.py (80KB)
+3. KEY CONTEXT:
+   - Tech: Python 3.11, Flask 2.3
+   - Vấn đề: N+1 queries, slow response
+4. TRẠNG THÁI:
+   ✅ Database analysis
+   → Implementing eager loading
+5. NEXT STEP: Test eager loading, benchmark
+
+Bước 3: Copy checkpoint
 ```
 
-Ví dụ cụ thể:
+#### **Tài khoản B (Ngày 2 - Tiếp tục):**
+
 ```
-📁 backend/
-├── 📄 app.py - 250 KB
-│   └─ Mô tả: Flask main app, 8 routes, N+1 query problem
-├── 📄 models.py - 180 KB
-│   └─ Mô tả: SQLAlchemy models (User, Product, Order)
-├── 📄 database.py - 80 KB
-│   └─ Mô tả: Database connection & session management
-├── 📄 utils.py - 150 KB
-│   └─ Mô tả: Helper functions, data processing
+Bước 1: Upload files
+→ Upload app.py, database.py
 
-📁 data/
-├── 📄 users.csv - 2 MB
-│   └─ Mô tả: 50K user records (ID, name, email)
-├── 📄 products.csv - 1.5 MB
-│   └─ Mô tả: 10K product records (ID, name, price)
-└── 📄 analysis.xlsx - 800 KB
-    └─ Mô tả: Performance metrics, benchmark results
+Bước 2: Dán checkpoint
+[Dán checkpoint từ A]
 
-📁 tests/
-└── 📄 test_api.py - 200 KB
-    └─ Mô tả: Unit tests cho 8 endpoints
+Bước 3: Yêu cầu Claude
+"Tiếp tục từ 'NEXT STEP' - test eager loading"
+
+Claude: "Perfect! Tôi xem files + checkpoint.
+Chúng ta test eager loading ngay..."
+```
+
+✅ **Hoàn tất!** Không mất context, không tốn token đủ!
+
+---
+
+## 📚 Các File Cần Biết
+
+### **templates/** - 3 templates chính
+
+| File | Dùng Khi | Kích Thước |
+|------|----------|-----------|
+| `level1_small_files.md` | File < 100KB | ~1KB |
+| `level2_medium_files.md` | File 100KB-5MB | ~2KB |
+| `level3_manifest.md` | File > 5MB / phức tạp | ~3KB |
+
+### **examples/** - Ví dụ thực tế
+
+| File | Loại Project | Tech Stack |
+|------|-------------|-----------|
+| `checkpoint_flask_api.md` | Backend API | Python + Flask |
+| `checkpoint_data_analysis.md` | Data Science | Python + Pandas |
+| `checkpoint_blog_writing.md` | Content | Writing |
+
+### **guides/** - Hướng dẫn chi tiết
+
+| File | Nội Dung |
+|------|----------|
+| `token_checker.md` | Cách biết khi nào tạo checkpoint |
+| `best_practices.md` | Những điều nên & không nên |
+| `troubleshooting.md` | Giải quyết vấn đề thường gặp |
+
+---
+
+## ❓ Hỏi Đáp
+
+### **Q: Template nào là tốt nhất?**
+A: Không có "tốt nhất", chỉ có "phù hợp nhất" với tình huống của bạn. Xem bảng "Chọn Template Nào?" ở trên.
+
+### **Q: Tôi có thể chỉnh sửa templates không?**
+A: **Có!** Mỗi template chỉ là gợi ý. Tùy chỉnh tùy ý cho phù hợp project của bạn.
+
+### **Q: Checkpoint có thể dùng cho model khác không (ChatGPT, Gemini)?**
+A: **Có!** Cách này dùng cho bất kỳ LLM nào. Chỉ cần đổi "Claude" thành tên model khác.
+
+### **Q: File > 5MB thì phải dùng Level 3 sao?**
+A: Không bắt buộc. Dùng Level 3 khi:
+- File quá lớn (không copy vào message được)
+- Project phức tạp (nhiều files, dependencies)
+- Muốn quản lý toàn bộ project
+
+### **Q: Tôi nên lưu checkpoint ở đâu?**
+A: GitHub tốt nhất (version control), nhưng cũng có thể:
+- Google Drive (dễ chia sẻ)
+- Notion (dễ tìm)
+- Local files (nhanh nhất)
+
+### **Q: Có thể tự động hóa checkpoint không?**
+A: Hiện chưa có. Bạn phải tạo thủ công. Nhưng có **Token Checker Widget** giúp biết khi nào cần tạo.
+
+---
+
+## 🛠️ Công Cụ Liên Quan
+
+### **Token Checker Widget**
+📍 Xem: `guides/token_checker.md`
+```
+- Theo dõi token đã dùng
+- Cảnh báo tự động (60%, 80%)
+- Ước tính token còn lại
+```
+
+### **Best Practices Guide**
+📍 Xem: `guides/best_practices.md`
+```
+- Khi nào tạo checkpoint
+- Cấu trúc checkpoint tốt
+- Sai lầm thường gặp
 ```
 
 ---
 
-## 3. LINKS & TÀI NGUYÊN NGOÀI
+## 🚀 Cách Sử Dụng Repo Này
 
+### **Lần đầu tiên:**
+```bash
+# Clone repo
+git clone https://github.com/your-username/claude-checkpoints.git
+cd claude-checkpoints
+
+# Xem templates
+ls templates/
+
+# Copy template cần dùng
+cat templates/level1_small_files.md
 ```
-🔗 [Tên tài nguyên 1]
-   URL: [https://...]
-   Loại: [Documentation/Tutorial/GitHub/Dataset/Paper]
-   Tương quan với: [Files nào trong project]
-   Thông tin: [Nội dung liên quan]
 
-🔗 [Tên tài nguyên 2]
-   URL: [https://...]
-   Loại: [Documentation/Tutorial/GitHub/Dataset/Paper]
-   Tương quan với: [Files nào trong project]
-   Thông tin: [Nội dung liên quan]
+### **Lần tiếp theo:**
+```bash
+# Update nếu có thay đổi
+git pull origin main
+
+# Sử dụng template
+cat templates/level2_medium_files.md
 ```
 
-Ví dụ:
-```
-🔗 SQLAlchemy Eager Loading Docs
-   URL: https://docs.sqlalchemy.org/orm/loading_strategies.html
-   Loại: Official Documentation
-   Tương quan với: models.py, app.py
-   Thông tin: Cách implement eager loading để tránh N+1 queries
+### **Thêm checkpoint mẫu mới:**
+```bash
+# Tạo file checkpoint
+echo "Checkpoint content..." > examples/my_checkpoint.md
 
-🔗 Flask Best Practices
-   URL: https://flask.palletsprojects.com/patterns/
-   Loại: Official Documentation
-   Tương quan với: app.py
-   Thông tin: Structure, error handling, database patterns
-
-🔗 Database Optimization (YouTube)
-   URL: https://youtube.com/watch?v=xyz
-   Loại: Tutorial Video
-   Tương quan với: app.py, database.py
-   Thông tin: Index strategies, query optimization tips
-
-🔗 GitHub Repo (Reference Code)
-   URL: https://github.com/username/similar-project
-   Loại: GitHub Repository
-   Tương quan với: Cấu trúc project
-   Thông tin: Cách structure Flask project chuẩn
+# Push lên GitHub
+git add .
+git commit -m "Add example checkpoint"
+git push origin main
 ```
 
 ---
 
-## 4. PHỤ THUỘC & DEPENDENCIES
+## 📝 Các Bước Để Thêm Template/Ví Dụ Mới
 
+### **Thêm ví dụ mới:**
+```bash
+# 1. Tạo file
+touch examples/checkpoint_[project_name].md
+
+# 2. Điền nội dung (copy từ template + điều chỉnh)
+
+# 3. Commit & push
+git add examples/checkpoint_[project_name].md
+git commit -m "Add example: [project_name]"
+git push origin main
 ```
-📦 Python Packages:
-   - [Package]: [Version] (dùng cho [mục đích])
-   - [Package]: [Version] (dùng cho [mục đích])
 
-🔌 External Services:
-   - [Service Name]: [Kết nối cách] (dùng cho [mục đích])
-
-⚙️ Configuration:
-   - [Config]: [Value] (tác dụng [gì])
-```
-
-Ví dụ:
-```
-📦 Python Packages:
-   - Flask==2.3.0 (REST API framework)
-   - SQLAlchemy==2.0.0 (ORM)
-   - psycopg2==2.9.0 (PostgreSQL adapter)
-   - pandas==2.0.0 (Data analysis)
-
-🔌 External Services:
-   - PostgreSQL (Database) - localhost:5432
-   - Redis (Cache) - localhost:6379
-
-⚙️ Configuration:
-   - SQLALCHEMY_ECHO=False (Tắt query logging)
-   - CACHE_TIMEOUT=3600 (Cache 1 giờ)
+### **Thêm guide mới:**
+```bash
+# Tương tự như trên, nhưng tạo trong folder guides/
+touch guides/[topic].md
+git add guides/[topic].md
+git commit -m "Add guide: [topic]"
+git push origin main
 ```
 
 ---
 
-## 5. KEY CONTEXT (Thông tin quan trọng)
+## 🤝 Đóng Góp
+
+Nếu bạn tìm thấy repo này hữu ích:
+
+- ⭐ **Star** repo (nút sao góc phải)
+- 🔄 **Fork** để tạo version riêng
+- 📢 **Share** với bạn bè lập trình
+- 💬 **Issues** nếu tìm thấy bug hoặc cần feature mới
+
+---
+
+## 📄 License
+
+MIT License - Tự do sử dụng, chỉ cần ghi credit.
 
 ```
-🎯 Mục tiêu hiện tại:
-   - [Mục tiêu 1]
-   - [Mục tiêu 2]
-
-📊 Metrics/KPI cần achieve:
-   - [Metric 1]: [Target]
-   - [Metric 2]: [Target]
-
-⚠️ Constraint/Limitation:
-   - [Constraint 1]
-   - [Constraint 2]
-
-✅ Convention/Best Practice:
-   - [Convention 1]
-   - [Convention 2]
-
-🔍 Known Issues:
-   - [Issue 1] (severity: [High/Medium/Low])
-   - [Issue 2] (severity: [High/Medium/Low])
-```
-
-Ví dụ:
-```
-🎯 Mục tiêu hiện tại:
-   - Giảm API response time từ 5s → 1s
-   - Fix N+1 query problem
-   - Optimize database indexes
-
-📊 Metrics/KPI cần achieve:
-   - Response time: < 1 second
-   - Database queries per request: < 3 queries
-   - CPU usage: < 30%
-
-⚠️ Constraint/Limitation:
-   - Không được thay đổi database schema
-   - Phải backward compatible với client cũ
-   - Production là PostgreSQL 12
-
-✅ Convention/Best Practice:
-   - Follow PEP 8 code style
-   - Tất cả queries phải có eager loading
-   - Error handling dùng custom exceptions
-
-🔍 Known Issues:
-   - GET /users timeout sau 5 giây (HIGH)
-   - Product images load chậm (MEDIUM)
-   - Missing indices trên orders table (HIGH)
+Copyright (c) 2024 [Tên bạn]
+Licensed under the MIT License
 ```
 
 ---
 
-## 6. TRẠNG THÁI HIỆN TẠI
+## 📞 Liên Hệ & Support
 
-```
-✅ ĐẦTÀM:
-   - [Task 1]
-   - [Task 2]
-
-→ ĐANG LÀM:
-   - [Task hiện tại]
-
-○ CẦN LÀM:
-   - [Task 1]
-   - [Task 2]
-   - [Task 3]
-```
-
-Ví dụ:
-```
-✅ ĐẦTÀM:
-   - Database analysis & profiling
-   - Identify N+1 queries
-   - Document performance issues
-
-→ ĐANG LÀM:
-   - Implement eager loading cho User.orders
-
-○ CẦN LÀM:
-   - Add database indices
-   - Optimize SELECT queries
-   - Run benchmark testing
-   - Update API documentation
-   - Deploy & monitor
-```
+- 📧 Email: [Your Email]
+- 🐙 GitHub: https://github.com/[your-username]/claude-checkpoints
+- 💬 Issues: Tạo issue trên GitHub nếu cần help
 
 ---
 
-## 7. NEXT STEPS (Chi tiết từng bước tiếp theo)
+## 🗺️ Roadmap (Tương Lai)
 
-```
-Step 1: [Mô tả]
-        Files liên quan: [File nào]
-        Expected output: [Kết quả mong đợi]
-
-Step 2: [Mô tả]
-        Files liên quan: [File nào]
-        Expected output: [Kết quả mong đợi]
-
-Step 3: [Mô tả]
-        Files liên quan: [File nào]
-        Expected output: [Kết quả mong đợi]
-```
-
-Ví dụ:
-```
-Step 1: Analyze app.py để tìm tất cả N+1 queries
-        Files liên quan: app.py, models.py
-        Expected output: Danh sách 5-10 N+1 query spots
-
-Step 2: Implement eager loading cho relationship
-        Files liên quan: models.py, app.py
-        Expected output: Updated code với eager loading
-
-Step 3: Run benchmark & so sánh performance
-        Files liên quan: test_api.py, analysis.xlsx
-        Expected output: Performance report (before/after)
-
-Step 4: Add database indices
-        Files liên quan: database.py
-        Expected output: Migration script + new indices
-
-Step 5: Final testing & deployment
-        Files liên quan: test_api.py, app.py
-        Expected output: All tests pass + ready to production
-```
+Những feature có thể thêm:
+- [ ] Template cho Gemini, ChatGPT
+- [ ] Script tự động tạo checkpoint
+- [ ] Dashboard theo dõi checkpoints
+- [ ] Integration với GitHub Actions
+- [ ] Web UI để manage checkpoints
 
 ---
 
-## CÁCH SỬ DỤNG MANIFEST FILE
+## 📚 Tài Liệu Thêm
 
-### Trên Tài khoản A (Khi sắp hết token):
-1. Điền đầy đủ tất cả section (1-7)
-2. Lưu file này (có thể lưu vào Google Drive, Notepad, hay khác)
-3. Copy toàn bộ nội dung
-
-### Trên Tài khoản B (Tiếp tục):
-
-**Lần đầu tiên (Setup):**
-```
-Tôi: "[Dán toàn bộ Manifest File]
-
-Tôi có một Manifest File cho project phức tạp. 
-Vui lòng đọc toàn bộ, giúp tôi hiểu project này."
-
-Claude: "Tôi đã đọc manifest. Tôi hiểu:
-- Project là Flask backend optimization
-- Có [X] files, [Y] links liên quan
-- Mục tiêu là giảm response time 5s → 1s
-- Hiện tại đang ở Step 1
-
-Sẵn sàng. Bạn upload files trong section 2 nhé?"
-```
-
-**Lần tiếp theo (Tiếp tục công việc):**
-```
-Tôi: "[Upload lại files từ section 2]
-
-[Dán lại Manifest File]
-
-Tiếp tục từ bước 'NEXT STEPS' nhé."
-
-Claude: "Perfect! Tôi có đầy đủ context. 
-Chúng ta tiếp tục Step [X]..."
-```
+- 📖 Hướng dẫn setup GitHub: `HUONG_DAN_LUU_GITHUB.md`
+- 📚 Best practices: `guides/best_practices.md`
+- 🔧 Troubleshooting: `guides/troubleshooting.md`
+- ⚡ Token checker: `guides/token_checker.md`
 
 ---
 
-## TIPS & TRICKS
+## 🎉 Chúc Mừng!
 
-1. **Lưu Manifest ở nhiều nơi:** Google Drive, GitHub Gist, Notion, hay local file
-2. **Update Manifest thường xuyên:** Mỗi khi status thay đổi, update NEXT STEPS
-3. **Tái sử dụng template:** Copy template này cho các project khác
-4. **Tên file rõ ràng:** `MANIFEST_[ProjectName]_[Date].md`
+Bạn giờ đã có toàn bộ template & hướng dẫn để quản lý checkpoints như một chuyên gia! 🚀
+
+**Lần tiếp theo khi Claude A sắp hết token, chỉ cần:**
+1. Mở repo → Chọn template phù hợp
+2. Điền thông tin → Copy checkpoint
+3. Dán vào Claude B → Tiếp tục ngay!
 
 ---
 
-**Lưu ý cuối cùng:** Template này rất chi tiết nhưng giúp bạn quản lý project phức tạp mà không bị mất context khi chuyển tài khoản!
+**Happy checkpointing! 📚✨**
+
+---
+
+**Cập nhật lần cuối:** 2024  
+**Phiên bản:** v1.0  
+**Tác giả:** [Tên bạn]
